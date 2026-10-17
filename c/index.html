@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#fdf6f0">
+<title>Подарочная карточка — Игрушки от Кукушки</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&family=Marck+Script&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fdf6f0;
+    --card: #ffffff;
+    --pink: #e8457e;
+    --pink-soft: #fde3ec;
+    --purple: #4b2e83;
+    --purple-soft: #ece5f7;
+    --green-soft: #e3f1e4;
+    --ink: #2f2540;
+    --muted: #7a6f88;
+    --line: #f0e4ea;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 16px/1.45 Rubik, system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  .wrap { max-width: 440px; margin: 0 auto; padding: 12px 16px 40px; }
+
+  .test {
+    background: repeating-linear-gradient(-45deg, #fff3b0 0 12px, #ffe98a 12px 24px);
+    color: #6b5400; font-weight: 700; font-size: 13px; text-align: center;
+    border-radius: 10px; padding: 6px 10px; margin-bottom: 8px;
+  }
+
+  header { text-align: center; position: relative; }
+  .logo { width: 82%; max-width: 330px; mix-blend-mode: multiply; display: block; margin: 0 auto; }
+
+  .hero {
+    position: relative;
+    background: linear-gradient(160deg, #ffffff 0%, #fff4f8 100%);
+    border-radius: 28px;
+    padding: 26px 20px 22px;
+    margin-top: 6px;
+    box-shadow: 0 10px 30px rgba(232, 69, 126, .12), 0 1px 0 rgba(255,255,255,.8) inset;
+    text-align: center;
+    overflow: hidden;
+  }
+  .ribbon {
+    display: inline-block;
+    background: var(--pink); color: #fff;
+    font-weight: 800; letter-spacing: .04em; text-transform: uppercase; font-size: 15px;
+    padding: 7px 18px; border-radius: 10px 4px 10px 4px;
+    transform: rotate(-2deg);
+    box-shadow: 0 3px 0 #c9346a;
+  }
+  .no { margin-top: 10px; color: var(--muted); font-size: 14px; }
+  .amount {
+    font-weight: 800; color: var(--purple);
+    font-size: clamp(54px, 17vw, 72px); line-height: 1; margin: 18px 0 6px;
+    letter-spacing: -.02em;
+  }
+  .amount small { font-size: .5em; font-weight: 700; }
+  .of { color: var(--muted); font-size: 15px; }
+  .bar { height: 10px; border-radius: 99px; background: var(--purple-soft); margin: 14px auto 0; max-width: 260px; overflow: hidden; }
+  .bar > i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--pink), #b25bd6); }
+  .status {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 16px; padding: 6px 14px; border-radius: 99px;
+    font-weight: 500; font-size: 14px;
+  }
+  .status.ok { background: var(--green-soft); color: #2e6b35; }
+  .status.used { background: var(--purple-soft); color: var(--purple); }
+  .status.off { background: #f1eef4; color: var(--muted); }
+  .hand {
+    font-family: "Marck Script", cursive; color: var(--pink);
+    font-size: 26px; margin-top: 14px; transform: rotate(-3deg);
+  }
+  .deco { position: absolute; pointer-events: none; }
+
+  section {
+    background: var(--card); border-radius: 22px; padding: 18px 18px 16px; margin-top: 14px;
+    box-shadow: 0 4px 16px rgba(75, 46, 131, .06);
+  }
+  h2 {
+    margin: 0 0 10px; font-size: 13px; font-weight: 800; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--pink);
+  }
+  .steps { margin: 0; padding: 0; list-style: none; counter-reset: s; }
+  .steps li { position: relative; padding: 6px 0 6px 40px; counter-increment: s; }
+  .steps li::before {
+    content: counter(s); position: absolute; left: 0; top: 4px;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--pink-soft); color: var(--pink); font-weight: 800;
+    display: grid; place-items: center; font-size: 15px;
+  }
+
+  .place { display: flex; gap: 12px; align-items: flex-start; }
+  .place svg { flex: none; margin-top: 2px; }
+  .place b { font-size: 18px; color: var(--purple); display: block; }
+  .place span { color: var(--muted); }
+
+  table.hours { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 15px; }
+  .hours td { padding: 5px 0; border-top: 1px dashed var(--line); }
+  .hours td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+  .hours tr.today td { color: var(--pink); font-weight: 700; }
+
+  .btns { display: grid; gap: 10px; margin-top: 14px; }
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    text-decoration: none; font-weight: 700; font-size: 17px;
+    border-radius: 16px; padding: 14px 16px; min-height: 52px;
+  }
+  .btn.call { background: var(--purple); color: #fff; }
+  .btn.tg { background: var(--pink-soft); color: var(--pink); }
+  .btn small { font-weight: 400; opacity: .8; font-size: 13px; }
+
+  .terms { margin: 0; padding-left: 18px; color: var(--ink); }
+  .terms li { margin: 4px 0; }
+  .muted { color: var(--muted); font-size: 13px; }
+
+  footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 22px; }
+  .skeleton { color: var(--muted); padding: 40px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="test">ТЕСТОВАЯ СТРАНИЦА · дизайн-макет, не сертификат</div>
+
+  <header>
+    <img class="logo" src="../img/logo.png" alt="Игрушки от Кукушки">
+  </header>
+
+  <div class="hero" id="hero">
+    <svg class="deco" style="left:14px;top:14px" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#b25bd6" stroke-width="2" stroke-linejoin="round"><path d="M12 2.8l2.7 5.6 6.1.8-4.5 4.2 1.1 6-5.4-3-5.4 3 1.1-6-4.5-4.2 6.1-.8z"/></svg>
+    <svg class="deco" style="right:16px;top:20px" width="28" height="26" viewBox="0 0 24 22" fill="none" stroke="#e8457e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 9c0 5.8-8 11-8 11z"/></svg>
+    <div class="skeleton">Открываем карточку…</div>
+  </div>
+
+  <section>
+    <h2>Как потратить</h2>
+    <ol class="steps">
+      <li>Приходите в магазин с этой карточкой.</li>
+      <li>Выбирайте что угодно: цветы, игрушки, сладости, книги, творчество.</li>
+      <li>На кассе приложите карточку — сумма спишется. Можно частями.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Где мы</h2>
+    <div class="place">
+      <svg width="26" height="30" viewBox="0 0 24 28" fill="none" stroke="#4b2e83" stroke-width="2.2"><path d="M12 26s9-8.4 9-15a9 9 0 1 0-18 0c0 6.6 9 15 9 15z"/><circle cx="12" cy="11" r="3.2"/></svg>
+      <div><b>п. Сельцо</b><span>рядом с Лентой</span></div>
+    </div>
+    <table class="hours" id="hours"></table>
+    <div class="btns">
+      <a class="btn call" href="tel:+79955905212">+7 995 590 52 12 <small>в часы работы</small></a>
+      <a class="btn tg" href="https://t.me/kuzz_is">Написать в Telegram <small>@kuzz_is</small></a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Условия</h2>
+    <ul class="terms">
+      <li>Срок не ограничен — деньги не сгорают.</li>
+      <li>Можно тратить частями, остаток видно на этой странице.</li>
+      <li>Сертификат погашается при предъявлении карточки.</li>
+      <li>Остаток можно вернуть деньгами по заявлению.</li>
+    </ul>
+    <p class="muted">Карточку, на которой ничего не осталось, верните нам — она полетит к следующему счастливчику, а вас ждёт сладкий подарок.</p>
+  </section>
+
+  <footer>
+    Игрушки от Кукушки · цветы, букеты, шары, игрушки и подарки<br>
+    Продавец: ИП ··· · ИНН ··· (заполним перед запуском)
+  </footer>
+</div>
+
+<script>
+(function () {
+  var HOURS = [
+    ["Понедельник", "12:00–20:00"], ["Вторник", "12:30–20:00"], ["Среда", "12:00–20:00"],
+    ["Четверг", "12:00–20:00"], ["Пятница", "12:00–20:00"], ["Суббота", "12:00–19:00"],
+    ["Воскресенье", "12:00–19:00"]
+  ];
+  var today = (new Date().getDay() + 6) % 7;
+  document.getElementById("hours").innerHTML = HOURS.map(function (h, i) {
+    return '<tr' + (i === today ? ' class="today"' : '') + '><td>' + h[0] + '</td><td>' + h[1] + '</td></tr>';
+  }).join("");
+
+  var hero = document.getElementById("hero");
+  var decor = hero.innerHTML.split('<div class="skeleton">')[0];
+
+  function rub(kop) {
+    return Math.round(kop / 100).toLocaleString("ru-RU").replace(/ |,/g, " ");
+  }
+  function render(html) { hero.innerHTML = decor + html; }
+
+  function show(c) {
+    var no = '<div class="no">Карточка № ' + c.no + (c.issue > 1 ? ' · выпуск ' + c.issue : '') + '</div>';
+    if (c.status === "returned") {
+      render('<div class="ribbon">Кукушкина карточка</div>' + no +
+        '<div class="amount" style="font-size:40px;margin-top:22px">Вернулась домой</div>' +
+        '<div class="of">Карточка снова в магазине и ждёт нового хозяина</div>' +
+        '<div class="status off">● не активна</div>');
+      return;
+    }
+    var pct = c.amount ? Math.max(0, Math.min(100, c.balance / c.amount * 100)) : 0;
+    var status = c.balance <= 0
+      ? '<div class="status off">● израсходована</div>'
+      : (c.balance < c.amount ? '<div class="status used">● потрачена частично</div>'
+                              : '<div class="status ok">● активна</div>');
+    var wish = c.balance <= 0 ? 'Спасибо, что были с нами!' : (c.wish || 'С любовью от кукушки!');
+    render('<div class="ribbon">Подарочный сертификат</div>' + no +
+      '<div class="amount">' + rub(c.balance) + '<small> ₽</small></div>' +
+      (c.balance < c.amount ? '<div class="of">осталось из ' + rub(c.amount) + ' ₽</div>' : '<div class="of">на подарки в нашем магазине</div>') +
+      '<div class="bar"><i style="width:' + pct + '%"></i></div>' +
+      status + '<div class="hand">' + wish + '</div>');
+  }
+
+  function notFound(msg) {
+    render('<div class="ribbon">Кукушкина карточка</div>' +
+      '<div class="amount" style="font-size:34px;margin-top:22px">' + msg + '</div>' +
+      '<div class="of">Напишите нам номер с обратной стороны карточки — подскажем остаток.</div>');
+  }
+
+  var token = decodeURIComponent(location.hash.slice(1)).trim();
+  if (!token) { notFound("Приложите карточку к телефону"); return; }
+  if (!window.crypto || !crypto.subtle) { notFound("Браузер не смог открыть карточку"); return; }
+
+  crypto.subtle.digest("SHA-256", new TextEncoder().encode(token)).then(function (buf) {
+    var hex = Array.prototype.map.call(new Uint8Array(buf), function (b) {
+      return ("0" + b.toString(16)).slice(-2);
+    }).join("");
+    return fetch(hex + ".json", { cache: "no-store" });
+  }).then(function (r) {
+    if (!r.ok) throw new Error(r.status);
+    return r.json();
+  }).then(show).catch(function () { notFound("Карточка не найдена"); });
+})();
+</script>
+</body>
+</html>
